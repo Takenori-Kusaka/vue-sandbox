@@ -5,13 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "deploy": "gh-pages -d dist"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "cheetah-grid": "^1.1.3",
     "core-js": "^3.6.5",
-    "gh-pages": "^3.2.3",
     "vue": "^2.6.11",
     "vuetify": "^2.4.0"
   },
