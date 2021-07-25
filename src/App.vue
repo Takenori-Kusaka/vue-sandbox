@@ -20,11 +20,12 @@
 
           <v-list-item-title>John Doe</v-list-item-title>
         </v-list-item>
+        <v-divider></v-divider>
         <v-list-item v-for="item in navbarlist" :key="item.route" :to="item.route">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-content>{{ item.text }}</v-list-item-content>
+          <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -78,29 +79,31 @@
     </v-app-bar>
 
     <v-main app>
-      <HelloWorld/>
-    </v-main>
 
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid>
+
+        <!-- If using vue-router -->
+        <router-view></router-view>
+      </v-container>
+    </v-main>
     <v-footer app>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
   },
 
   data: () => ({
     drawer: false,
-    items: [
-        {icon: 'mdi-speedometer', title:'Dashboard', route:'/dashboard'},
-        {icon: 'mdi-tools', title:'Tools', route:'/tools'}
+    navbarlist: [
+        {icon: 'mdi-home', title:'Home', route:'/'},
+        {icon: 'mdi-table', title:'Cgrid', route:'/cgrid'}
     ],
     //
   }),
