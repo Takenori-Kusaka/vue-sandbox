@@ -103,7 +103,8 @@ export default {
     drawer: false,
     navbarlist: [
         {icon: 'mdi-home', title:'Home', route:'/'},
-        {icon: 'mdi-table', title:'Cgrid', route:'/cgrid'}
+        {icon: 'mdi-table', title:'Cgrid', route:'/cgrid'},
+        {icon: 'mdi-video', title:'Video', route:'/video'}
     ],
     //
   }),
