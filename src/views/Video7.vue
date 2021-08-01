@@ -6,17 +6,27 @@
     </v-card-title>
     <vue-core-video-player
       ref="vplayer"
-      src="file_example_MP4_480_1_5MG.mp4"
+      :src="target_video"
       :controls="false"
       :autoplay="false"
       :muted="true"
       :loop="false"
+      @loadeddata="getDuration"
+      @timeupdate="timeUpdate"
       >
     </vue-core-video-player>
 
     <v-card-actions>
-      <v-btn color=success :disabled="isPlaying" @click="play">Play</v-btn>
-      <v-btn color=primary :disabled="!isPlaying" @click="stop">Stop</v-btn>
+      <v-btn v-if="!isPlaying" color=success @click="play">Play</v-btn>
+      <v-btn v-else color=primary @click="stop">Stop</v-btn>
+      <v-slider
+        v-model="seak"
+        hint="Seak bar"
+        :max="seak_max"
+        :min="0"
+        :step="0.1"
+        @change="updateCurrenttime"
+      ></v-slider>
     </v-card-actions>
     
   </v-card>
@@ -33,49 +43,36 @@ export default {
   },
   data() {
     return {
-      isPlaying: false
+      isPlaying: false,
+      seak_max: 0.0,
+      seak: 0.0,
+      target_video: 'file_example_MP4_480_1_5MG.mp4'
     }
   },
   methods: {
     play($event) {
       console.log($event)
+      this.isPlaying=true
       this.$refs.vplayer.play()
     },
     stop($event) {
       console.log($event)
       this.$refs.vplayer.pause()
+      this.isPlaying=false
     },
-    onPlayerPlay($event) {
+    getDuration($event) {
       console.log($event)
+      this.seak_max = $event.target.duration
     },
-    onPlayerReady($event) {
+    updateCurrenttime($event) {
       console.log($event)
+      console.log(this.$refs.vplayer)
+      this.$refs.vplayer.videoCore.$video.currentTime = this.seak
     },
-    playVideo: function (source) {
-      const video = {
-        withCredentials: false,
-        type: 'application/x-mpegurl',
-        src: source
-      }
-      // this.player.reset() // in IE11 (mode IE10) direct usage of src() when <src> is already set, generated errors,
-      this.player.src(video)
-      // this.player.load()
-      this.player.play()
+    timeUpdate($event) {
+      console.log($event)
+      this.seak = $event.target.currentTime
     }
   }
 }
 </script>
-<style scoped>
-  .player {
-    position: absolute !important;
-    width: 100%;
-    height: 60%;
-  }
-  .vjs-custom-skin {
-    height: 60% !important;
-  }
-
-  .vjs-custom-skin /deep/ .video-js {
-    height: 60%;
-  }
-</style>
