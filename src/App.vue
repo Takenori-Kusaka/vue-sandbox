@@ -105,7 +105,8 @@ export default {
         {icon: 'mdi-home', title:'Home', route:'/'},
         {icon: 'mdi-table', title:'Cgrid', route:'/cgrid'},
         {icon: 'mdi-video', title:'Video', route:'/video'},
-        {icon: 'mdi-text', title:'Search Word', route:'/search_word'}
+        {icon: 'mdi-text', title:'Search Word', route:'/search_word'},
+        {icon: 'mdi-graph', title:'ApexGraph', route:'/graph'}
     ],
     //
   }),

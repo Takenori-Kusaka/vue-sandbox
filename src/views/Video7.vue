@@ -4,6 +4,13 @@
     <v-card-title>
       <h2>video example</h2>
     </v-card-title>
+    <v-divider/>
+    <v-select
+      v-model="target_video"
+      :items="target_video_list"
+      label="Select video"
+      outlined
+    ></v-select>
     <vue-core-video-player
       ref="vplayer"
       :src="target_video"
@@ -46,7 +53,13 @@ export default {
       isPlaying: false,
       seak_max: 0.0,
       seak: 0.0,
-      target_video: 'file_example_MP4_480_1_5MG.mp4'
+      target_video: 'video_files/file_example_MP4_480_1_5MG.mp4',
+      target_video_list: [
+        'video_files/file_example_MP4_480_1_5MG.mp4',
+        'video_files/Sample MP4 Video File for Testing.mp4',
+        'video_files/sample_640x360.mp4',
+        'video_files/sample-mp4-file.mp4',
+      ]
     }
   },
   methods: {
