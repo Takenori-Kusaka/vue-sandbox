@@ -11,8 +11,21 @@
       label="Select video"
       outlined
     ></v-select>
+    <vue-core-video-player-myself
+      ref="vplayer1"
+      style="height=30vh;width=30vw"
+      :src="target_video"
+      :controls="false"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      @loadeddata="getDuration"
+      @timeupdate="timeUpdate"
+      >
+    </vue-core-video-player-myself>
     <vue-core-video-player
-      ref="vplayer"
+      ref="vplayer2"
+      style="height=30vh;width=30vw"
       :src="target_video"
       :controls="false"
       :autoplay="false"
@@ -26,6 +39,7 @@
     <v-card-actions>
       <v-btn v-if="!isPlaying" color=success @click="play">Play</v-btn>
       <v-btn v-else color=primary @click="stop">Stop</v-btn>
+      <v-btn @click="debug">debug</v-btn>
       <v-slider
         v-model="seak"
         hint="Seak bar"
@@ -66,11 +80,13 @@ export default {
     play($event) {
       console.log($event)
       this.isPlaying=true
-      this.$refs.vplayer.play()
+      this.$refs.vplayer1.play()
+      this.$refs.vplayer2.play()
     },
     stop($event) {
       console.log($event)
-      this.$refs.vplayer.pause()
+      this.$refs.vplayer1.pause()
+      this.$refs.vplayer2.pause()
       this.isPlaying=false
     },
     getDuration($event) {
@@ -85,6 +101,10 @@ export default {
     timeUpdate($event) {
       console.log($event)
       this.seak = $event.target.currentTime
+    },
+    debug() {
+      console.log(this.$refs.vplayer1)
+      console.log(this.$refs.vplayer2)
     }
   }
 }
