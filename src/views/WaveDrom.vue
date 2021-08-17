@@ -19,6 +19,13 @@ export default {
   components: {
   },
   mounted () {
+    let defaultskin = document.createElement('script')
+    defaultskin.setAttribute('src', 'wavedrom/skins/default.js')
+    document.head.appendChild(defaultskin)
+    let wavedrom = document.createElement('script')
+    wavedrom.setAttribute('src', 'wavedrom/wavedrom.min.js')
+    document.head.appendChild(wavedrom)
+    console.log(WaveDrom)
     WaveDrom.ProcessAll()
   },
   computed: {
