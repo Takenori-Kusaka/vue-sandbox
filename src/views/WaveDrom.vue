@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import WaveDrom from 'wavedrom'
 export default {
   name: "WaveDrom",
   components: {
@@ -26,7 +27,7 @@ export default {
     wavedrom.setAttribute('src', 'wavedrom/wavedrom.min.js')
     document.head.appendChild(wavedrom)
     console.log(WaveDrom)
-    WaveDrom.ProcessAll()
+    WaveDrom.processAll()
   },
   computed: {
   },
