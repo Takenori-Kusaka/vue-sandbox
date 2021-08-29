@@ -108,6 +108,7 @@ export default {
         {icon: 'mdi-text', title:'Search Word', route:'/search_word'},
         {icon: 'mdi-graph', title:'ApexGraph', route:'/graph'},
         {icon: 'mdi-square-wave', title:'WaveDrom', route:'/wave'},
+        {icon: 'mdi-cube-outline', title:'3DModel', route:'/3DModel'},
     ],
     //
   }),

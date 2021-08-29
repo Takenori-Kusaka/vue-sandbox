@@ -17,6 +17,7 @@
     "less-loader": "^8.0.0",
     "video.js": "^7.13.3",
     "vue": "^2.6.11",
+    "vue-3d-model": "^1.4.0",
     "vue-apexcharts": "^1.6.2",
     "vue-cheetah-grid": "^1.1.5",
     "vue-core-video-player": "^0.2.0",
