@@ -11,30 +11,6 @@
       label="Select video"
       outlined
     ></v-select>
-    <vue-core-video-player-myself
-      ref="vplayer1"
-      style="height=30vh;width=30vw"
-      :src="target_video"
-      :controls="false"
-      :autoplay="false"
-      :muted="true"
-      :loop="false"
-      @loadeddata="getDuration"
-      @timeupdate="timeUpdate"
-      >
-    </vue-core-video-player-myself>
-    <vue-core-video-player
-      ref="vplayer2"
-      style="height=30vh;width=30vw"
-      :src="target_video"
-      :controls="false"
-      :autoplay="false"
-      :muted="true"
-      :loop="false"
-      @loadeddata="getDuration"
-      @timeupdate="timeUpdate"
-      >
-    </vue-core-video-player>
 
     <v-card-actions>
       <v-btn v-if="!isPlaying" color=success @click="play">Play</v-btn>
@@ -49,7 +25,28 @@
         @change="updateCurrenttime"
       ></v-slider>
     </v-card-actions>
-    
+    <!--
+    <video ref="vplayer1" id="vplayer1" :src="target_video" controls :autoplay="false" :muted="true" :loop="true"></video>
+    <video ref="vplayer2" id="vplayer2" :src="target_video2" controls :autoplay="false" :muted="true" :loop="false"></video>
+    -->
+    <vue-core-video-player-myself
+      ref="vplayer1"
+      :src="target_video"
+      :controls="false"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      >
+    </vue-core-video-player-myself>
+    <vue-core-video-player
+      ref="vplayer2"
+      :src="target_video2"
+      :controls="false"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      >
+    </vue-core-video-player>
   </v-card>
 </template>
 
@@ -67,12 +64,13 @@ export default {
       isPlaying: false,
       seak_max: 0.0,
       seak: 0.0,
-      target_video: 'video_files/file_example_MP4_480_1_5MG.mp4',
+      target_video: 'videofiles/video_files/file_example_MP4_480_1_5MG.mp4',
+      target_video2: 'videofiles/video_files/file_example_MP4_480_1_5MG.mp4',
       target_video_list: [
-        'video_files/file_example_MP4_480_1_5MG.mp4',
-        'video_files/Sample MP4 Video File for Testing.mp4',
-        'video_files/sample_640x360.mp4',
-        'video_files/sample-mp4-file.mp4',
+        'videofiles/video_files/file_example_MP4_480_1_5MG.mp4',
+        'videofiles/video_files/Sample MP4 Video File for Testing.mp4',
+        'videofiles/video_files/sample_640x360.mp4',
+        'videofiles/video_files/sample-mp4-file.mp4',
       ]
     }
   },
@@ -95,16 +93,20 @@ export default {
     },
     updateCurrenttime($event) {
       console.log($event)
-      console.log(this.$refs.vplayer)
-      this.$refs.vplayer.videoCore.$video.currentTime = this.seak
+      this.$refs.vplayer1.videoCore.$video.currentTime = this.seak
+      this.$refs.vplayer2.videoCore.$video.currentTime = this.seak
+      console.log(this.$refs.vplayer1.videoCore.$video.currentTime)
+      console.log(this.$refs.vplayer2.videoCore.$video.currentTime)
     },
     timeUpdate($event) {
       console.log($event)
-      this.seak = $event.target.currentTime
+      this.seak = $event.currentTime
     },
     debug() {
       console.log(this.$refs.vplayer1)
       console.log(this.$refs.vplayer2)
+      console.log(this.$refs.vplayer1.videoCore.$video.duration)
+      this.seak_max = this.$refs.vplayer1.videoCore.$video.duration
     }
   }
 }
